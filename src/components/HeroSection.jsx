@@ -15,7 +15,7 @@ export default function HeroSection() {
         style={{ scale, y, backgroundImage: "url(/images/college.jpg)" }}
       />
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/72 to-navy/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3A]/75 via-navy/72 to-navy/35" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-black/25" />
       </div>
 

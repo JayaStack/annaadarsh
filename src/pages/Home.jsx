@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import HeroSection from "../components/HeroSection";
+import VideoSection from "../components/VideoSection";
 import CourseSearchBar from "../components/CourseSearchBar";
 import QuickLinksCards from "../components/QuickLinksCards";
 import StatsSection from "../components/StatsSection";
@@ -11,14 +12,14 @@ import StickyApplyBar from "../components/StickyApplyBar";
 
 export default function Home() {
   useEffect(() => {
-    // Scroll to top on mount
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* Hero Section */}
       <HeroSection />
+
+      <VideoSection />
 
       {/* Course Search Bar - Critical Conversion Element */}
       <CourseSearchBar />

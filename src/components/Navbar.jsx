@@ -18,53 +18,34 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
-  const isSolid = scrolled || !isHome || menuOpen;
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  const navBg = isSolid ? "bg-white shadow-md" : "bg-transparent";
-  const textColor = isSolid ? "text-gray-800" : "text-white";
-  const subTextColor = isSolid ? "text-gray-500" : "text-gray-300";
-  const navHover = isSolid ? "hover:bg-navy/5" : "hover:bg-white/10";
+  const subTextColor = "text-gray-400";
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBg}`}
-    >
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#0B1F3A] border-b border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20 transition-all">
+        <div className="flex items-center justify-between h-20">
           <Link
             to="/"
-            className="flex items-center gap-3 hover:opacity-90 transition flex-shrink-0"
+            className="flex items-center gap-4 hover:opacity-90 transition-all duration-300 flex-shrink-0"
           >
             <img
               src="/images/logo.png"
               alt="College Logo"
-              className={`h-10 w-10 object-contain rounded-full p-1 transition-colors duration-300 ${isSolid ? "bg-gray-100" : "bg-white"}`}
+              className="h-11 w-11 object-contain rounded-full border border-white/20 bg-white/20 backdrop-blur-sm p-1"
             />
 
             <div className="hidden sm:block leading-tight">
-              <p
-                className={`text-sm font-semibold tracking-wide transition-colors duration-300 ${textColor}`}
-              >
+              <p className="text-sm font-semibold text-white tracking-wide">
                 Dr. Vikram Agarwal College
               </p>
-              <p
-                className={`text-xs transition-colors duration-300 ${subTextColor}`}
-              >
+              <p className={`text-xs ${subTextColor} tracking-wide`}>
                 Arts &amp; Science
               </p>
             </div>
@@ -74,9 +55,7 @@ export default function Navbar() {
             {navLinks.map((link) =>
               link.children ? (
                 <div key={link.label} className="relative group">
-                  <button
-                    className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm font-sans font-500 transition-colors duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor}`}
-                  >
+                  <button className="flex items-center gap-1 px-4 py-2 rounded-full text-sm font-sans font-medium text-white/80 tracking-wide hover:text-white hover:bg-white/10 hover:backdrop-blur-sm transition-all duration-300 ease-out hover:scale-105 active:scale-95">
                     {link.label}
                     <svg
                       className="w-3.5 h-3.5 mt-0.5 opacity-60"
@@ -96,12 +75,12 @@ export default function Navbar() {
                   <div className="absolute top-full left-0 w-full h-3" />
 
                   <div className="absolute top-full left-0 pt-2 z-50 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
-                    <div className="w-48 bg-white rounded-xl shadow-xl py-2 ring-1 ring-navy/10">
+                    <div className="w-48 bg-[#0B1F3A] rounded-xl shadow-xl py-2 ring-1 ring-white/10 border border-white/10">
                       {link.children.map((child) => (
                         <Link
                           key={child.label}
                           to={child.href}
-                          className="block px-4 py-2.5 text-sm text-navy/80 hover:text-navy hover:bg-cream font-sans transition-colors"
+                          className="block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/10 font-sans transition-all duration-300"
                         >
                           {child.label}
                         </Link>
@@ -113,7 +92,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`px-4 py-2 rounded-full text-sm font-sans font-500 transition-colors duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor} ${location.pathname === link.href ? "opacity-100" : "opacity-80 hover:opacity-100"}`}
+                  className={`px-4 py-2 rounded-full text-sm font-sans tracking-wide transition-all duration-300 ease-out hover:scale-105 active:scale-95 hover:bg-white/10 hover:backdrop-blur-sm ${location.pathname === link.href ? "text-white font-medium bg-white/10" : "text-white/80 hover:text-white"}`}
                 >
                   {link.label}
                 </Link>
@@ -124,7 +103,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center ml-4">
             <Link
               to="/admissions"
-              className="px-5 py-2.5 rounded-full bg-gold text-navy font-semibold shadow-sm hover:bg-gold-dark hover:text-white transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+              className="px-6 py-2.5 rounded-full bg-yellow-400 text-black font-semibold hover:bg-yellow-300 shadow-md transition-all duration-300 ease-out hover:scale-105 active:scale-95"
             >
               Apply Now
             </Link>
@@ -132,7 +111,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${isSolid ? "text-gray-800 hover:bg-cream" : "text-white hover:bg-white/10"}`}
+            className="lg:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 ease-out hover:scale-105 active:scale-95"
             aria-label="Toggle menu"
           >
             {menuOpen ? (
@@ -171,18 +150,18 @@ export default function Navbar() {
       <div
         className={`lg:hidden transition-all duration-300 overflow-hidden ${menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}
       >
-        <div className="bg-white px-4 py-4 space-y-1 shadow-xl ring-1 ring-navy/10">
+        <div className="bg-[#0B1F3A] border-b border-white/10 px-4 py-4 space-y-1 shadow-xl">
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label}>
-                <div className="px-4 py-2 text-xs font-sans font-600 tracking-widest uppercase text-gold">
+                <div className="px-4 py-2 text-xs font-sans font-semibold tracking-widest uppercase text-yellow-500">
                   {link.label}
                 </div>
                 {link.children.map((child) => (
                   <Link
                     key={child.label}
                     to={child.href}
-                    className="block px-6 py-2.5 text-sm text-navy/80 font-sans hover:text-navy"
+                    className="block px-6 py-2.5 text-sm text-white/80 font-sans hover:text-white hover:bg-white/5 rounded transition-all duration-300"
                   >
                     {child.label}
                   </Link>
@@ -192,22 +171,22 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 to={link.href}
-                className="block px-4 py-2.5 text-sm text-navy font-sans font-500 rounded-xl hover:bg-cream"
+                className={`block px-4 py-2.5 text-sm font-sans rounded-xl transition-all duration-300 ${location.pathname === link.href ? "text-white font-medium bg-white/10" : "text-white/80 hover:text-white hover:bg-white/5"}`}
               >
                 {link.label}
               </Link>
             ),
           )}
-          <div className="pt-3 border-t border-cream">
+          <div className="pt-3 border-t border-white/10">
             <Link
               to="/admissions"
-              className="block text-center bg-gold text-navy px-6 py-3 rounded-full text-sm font-sans font-600 transition-all duration-300 ease-out hover:scale-105 active:scale-95"
+              className="block text-center bg-yellow-400 text-black px-6 py-3 rounded-full text-sm font-sans font-semibold hover:bg-yellow-300 shadow-md transition-all duration-300 ease-out hover:scale-105 active:scale-95"
             >
               Apply Now
             </Link>
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }

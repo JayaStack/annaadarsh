@@ -93,6 +93,13 @@
   .font-600 {
     font-weight: 600;
   }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
   .text-balance {
     text-wrap: balance;
   }
@@ -101,9 +108,22 @@
   }
 }
 
-/* Marquee pause on hover */
-.marquee-container:hover .marquee-track {
-  animation-play-state: paused;
+/* Marquee always runs; hover no longer pauses animation */
+
+/* Horizontal logo scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: scroll 25s linear infinite;
+  animation-play-state: running;
+  will-change: transform;
 }
 
 /* Page transition */

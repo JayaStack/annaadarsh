@@ -1,4 +1,10 @@
-import { ArrowRight, Banknote, CalendarCheck, ClipboardList, School } from "lucide-react";
+import {
+  ArrowRight,
+  Banknote,
+  CalendarCheck,
+  ClipboardList,
+  School,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import MotionReveal, { revealItem } from "./MotionReveal";
@@ -7,31 +13,23 @@ export default function QuickLinksCards() {
   const quickLinks = [
     {
       title: "Admissions",
-      description: "Apply now and start your journey",
-      image: "url(/images/college.jpg)",
+      image: "/images/college.jpg",
       href: "/admissions",
-      icon: ClipboardList,
     },
     {
       title: "Fee Structure",
-      description: "Transparent pricing & payment plans",
-      image: "url(/images/college.jpg)",
+      image: "/images/college.jpg",
       href: "/admissions",
-      icon: Banknote,
     },
     {
       title: "Campus Life",
-      description: "Hostel, clubs, sports & more",
-      image: "url(/images/college.jpg)",
+      image: "/images/college.jpg",
       href: "/campus",
-      icon: School,
     },
     {
       title: "Book Campus Visit",
-      description: "Experience our campus in person",
-      image: "url(/images/college.jpg)",
+      image: "/images/college.jpg",
       href: "/contact",
-      icon: CalendarCheck,
     },
   ];
 
@@ -48,47 +46,33 @@ export default function QuickLinksCards() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {quickLinks.map((link) => {
-            const Icon = link.icon;
-
-            return (
-              <motion.div variants={revealItem} key={link.title}>
-                <Link
-                key={link.title}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {quickLinks.map((link) => (
+            <motion.div variants={revealItem} key={link.title}>
+              <Link
                 to={link.href}
-                className="group relative overflow-hidden rounded-xl h-72 cursor-pointer shadow-sm transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl block"
+                className="group rounded-xl overflow-hidden bg-black transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl block"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: link.image }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/60 to-navy/20 transition-colors duration-300" />
+                <div className="h-60 overflow-hidden">
+                  <img
+                    src={link.image}
+                    alt={link.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
 
-                <div className="absolute inset-0 flex flex-col justify-between p-6 z-10">
-                  <div className="w-12 h-12 rounded-lg bg-white/12 backdrop-blur-md border border-white/20 text-gold flex items-center justify-center">
-                    <Icon className="w-6 h-6" />
-                  </div>
+                <div className="flex items-center justify-between px-5 py-5 bg-black">
+                  <h3 className="text-white font-medium text-lg">
+                    {link.title}
+                  </h3>
 
-                  <div>
-                    <h3 className="text-2xl font-serif font-bold text-white mb-2 group-hover:text-gold transition-colors tracking-normal">
-                      {link.title}
-                    </h3>
-                    <p className="text-white/80 text-sm mb-4 leading-6">
-                      {link.description}
-                    </p>
-
-                    <div className="flex items-center gap-2 text-gold opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-2">
-                      <span className="font-semibold">Learn More</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </div>
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full border border-white text-white transition-all duration-300 group-hover:bg-white group-hover:text-black group-hover:translate-x-1">
+                    <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </Link>
-              </motion.div>
-            );
-          })}
+            </motion.div>
+          ))}
         </div>
       </div>
     </MotionReveal>

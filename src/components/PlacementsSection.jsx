@@ -47,7 +47,7 @@ export default function PlacementsSection() {
 
   return (
     <MotionReveal as="section" className="py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-6 lg:px-16">
         <motion.div variants={revealItem} className="text-center mb-16">
           <p className="section-label">Career Outcomes</p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-navy mb-4 tracking-normal">
@@ -58,26 +58,32 @@ export default function PlacementsSection() {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={revealItem}
-          className="mb-16 bg-cream rounded-xl p-8 md:p-12 ring-1 ring-navy/5"
-        >
-          <h3 className="text-navy font-semibold mb-8 text-center">
-            Our Top Recruiters
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 items-center justify-items-center">
-            {topRecruiters.map((company) => (
-              <div
-                key={company}
-                className="w-full h-20 flex items-center justify-center rounded-lg bg-white ring-1 ring-navy/5 grayscale opacity-65 hover:grayscale-0 hover:opacity-100 hover:shadow-xl transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02]"
-              >
-                <img
-                  src={logoSrc(company)}
-                  alt={`${company} logo`}
-                  className="h-10 w-auto max-w-[120px] object-contain"
-                />
-              </div>
-            ))}
+        <motion.div variants={revealItem} className="w-full py-12">
+          <div className="max-w-7xl mx-auto text-center mb-10 px-4 sm:px-6 lg:px-8">
+            <h3 className="text-navy font-semibold mb-2">Our Top Recruiters</h3>
+            <p className="text-muted">
+              Our students work with leading global companies
+            </p>
+          </div>
+
+          <div className="relative w-full overflow-hidden">
+            <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent pointer-events-none z-20" />
+            <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-20" />
+
+            <div className="flex gap-12 w-max marquee-track animate-scroll px-6 lg:px-16">
+              {[...topRecruiters, ...topRecruiters].map((company, idx) => (
+                <div
+                  key={`${company}-${idx}`}
+                  className="flex items-center justify-center min-w-[140px] h-20 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <img
+                    src={logoSrc(company)}
+                    alt={`${company} logo`}
+                    className="h-8 object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-300"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 

@@ -29,7 +29,7 @@ function AppContent() {
     <>
       <ScrollToTop />
       <Navbar />
-      <main>
+      <main className="pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />

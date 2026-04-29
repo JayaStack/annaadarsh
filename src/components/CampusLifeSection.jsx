@@ -1,6 +1,5 @@
 import {
   Check,
-  FlaskConical,
   Library,
   Monitor,
   Play,
@@ -9,14 +8,12 @@ import {
   Users,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import MotionReveal, { revealItem } from "./MotionReveal";
+import FacilityCard from "./FacilityCard";
 
 const campusIcons = [School, Library, Trophy, Users, Play, Monitor];
 
 export default function CampusLifeSection() {
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const campusImages = [
     {
       id: 1,
@@ -51,21 +48,41 @@ export default function CampusLifeSection() {
   ];
 
   const campusHighlights = [
-    "Modern classrooms with latest technology",
-    "Wi-Fi enabled entire campus",
-    "State-of-the-art laboratory facilities",
-    "Spacious hostel with all amenities",
-    "Athletic fields and sports complex",
-    "Multi-cuisine mess with quality food",
-    "24/7 security and surveillance",
-    "Medical center & counseling services",
-    "Active student clubs and societies",
-    "Regular cultural & sports events",
+    {
+      title: "Modern Classrooms",
+      image: "/images/college.jpg",
+      description: "Smart learning spaces designed for engagement and clarity.",
+    },
+    {
+      title: "Wi-Fi Campus",
+      image: "/images/college.jpg",
+      description: "Always-connected campus support for study and collaboration.",
+    },
+    {
+      title: "Laboratories",
+      image: "/images/college.jpg",
+      description: "Hands-on labs built for practical learning and discovery.",
+    },
+    {
+      title: "Library",
+      image: "/images/college.jpg",
+      description: "Quiet research zones with a strong academic resource base.",
+    },
+    {
+      title: "Hostel",
+      image: "/images/college.jpg",
+      description: "Comfortable living with secure and supportive amenities.",
+    },
+    {
+      title: "Sports & Clubs",
+      image: "/images/college.jpg",
+      description: "A balanced campus life with activity, culture, and sport.",
+    },
   ];
 
   return (
-    <MotionReveal as="section" className="py-28 bg-navy">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <MotionReveal as="section" className="py-16 bg-navy">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div variants={revealItem} className="text-center mb-16">
           <p className="section-label">Campus Experience</p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-normal">
@@ -84,7 +101,6 @@ export default function CampusLifeSection() {
               <motion.button
                 variants={revealItem}
                 key={image.id}
-                onClick={() => setSelectedImage(image)}
                 className="group relative overflow-hidden rounded-xl h-64 cursor-pointer text-left transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl active:scale-95"
               >
                 <div
@@ -119,76 +135,23 @@ export default function CampusLifeSection() {
           })}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div variants={revealItem} className="relative">
-            <div className="absolute inset-y-0 -left-6 right-0 bg-gradient-to-r from-[#0B1F3A]/90 via-[#0B1F3A]/60 to-transparent pointer-events-none" />
-
-            <div className="relative z-10">
-              <h3 className="text-3xl font-serif font-semibold text-white mb-8 tracking-tight [text-shadow:0_2px_10px_rgba(0,0,0,0.4)]">
+        <div className="max-w-6xl mx-auto py-16">
+          <motion.div variants={revealItem} className="w-full">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl font-serif font-semibold text-white tracking-tight [text-shadow:0_2px_10px_rgba(0,0,0,0.4)]">
                 World-Class Facilities
               </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {campusHighlights.map((highlight) => (
-                  <div key={highlight} className="flex items-start gap-3">
-                    <span className="mt-0.5 w-5 h-5 flex items-center justify-center rounded-full bg-yellow-500/20 text-yellow-400 flex-shrink-0">
-                      <Check className="w-3.5 h-3.5" />
-                    </span>
-                    <p className="text-gray-200 text-sm leading-7 transition duration-300 hover:text-white">
-                      {highlight}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={revealItem}
-            className="bg-white rounded-xl p-8 shadow-[0_24px_70px_rgba(0,0,0,0.18)]"
-          >
-            <div className="mb-8">
-              <div className="w-12 h-12 rounded-lg bg-gold/15 text-gold flex items-center justify-center mb-5">
-                <FlaskConical className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-serif font-bold text-navy mb-4 tracking-normal">
-                Experience Our Campus
-              </h3>
-              <p className="text-muted leading-relaxed mb-6">
-                Come visit our state-of-the-art campus and experience the
-                vibrant student life. Our campus is strategically located with
-                excellent connectivity and surrounded by a supportive community.
-              </p>
-
-              <div className="space-y-4">
-                <button className="w-full bg-navy hover:bg-navy-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 hover:shadow-lg">
-                  Schedule Campus Visit
-                </button>
-                <button className="w-full flex items-center justify-center gap-2 bg-white border border-navy/20 hover:border-navy hover:bg-cream text-navy font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95">
-                  <Play className="w-4 h-4 fill-navy" />
-                  Virtual Tour
-                </button>
-              </div>
             </div>
 
-            <div className="border-t border-slate-100 pt-8">
-              <h4 className="font-semibold text-navy mb-4">Quick Facts</h4>
-              <div className="space-y-3">
-                {[
-                  { label: "Total Campus Area", value: "25 Acres" },
-                  { label: "Hostel Capacity", value: "2,000+ Students" },
-                  { label: "Library Books", value: "50,000+" },
-                  { label: "Labs & Studios", value: "40+" },
-                ].map((fact) => (
-                  <div
-                    key={fact.label}
-                    className="flex justify-between items-center gap-4"
-                  >
-                    <span className="text-muted text-sm">{fact.label}</span>
-                    <span className="font-semibold text-navy whitespace-nowrap">
-                      {fact.value}
-                    </span>
-                  </div>
+            <div className="relative w-full overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth pb-2">
+              <div className="flex w-max gap-6 pr-6">
+                {campusHighlights.map((facility) => (
+                  <FacilityCard
+                    key={facility.title}
+                    title={facility.title}
+                    image={facility.image}
+                    description={facility.description}
+                  />
                 ))}
               </div>
             </div>
