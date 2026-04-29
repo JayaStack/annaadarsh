@@ -1,5 +1,9 @@
-import { Play } from "lucide-react";
+import { Check, FlaskConical, Library, Monitor, Play, School, Trophy, Users } from "lucide-react";
+import { motion } from "framer-motion";
 import { useState } from "react";
+import MotionReveal, { revealItem } from "./MotionReveal";
+
+const campusIcons = [School, Library, Trophy, Users, Play, Monitor];
 
 export default function CampusLifeSection() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -9,37 +13,31 @@ export default function CampusLifeSection() {
       id: 1,
       title: "Main Campus",
       category: "Infrastructure",
-      thumbnail: "📚",
     },
     {
       id: 2,
       title: "Library & Study Areas",
       category: "Facilities",
-      thumbnail: "📖",
     },
     {
       id: 3,
       title: "Sports Complex",
       category: "Sports",
-      thumbnail: "⚽",
     },
     {
       id: 4,
       title: "Hostel Amenities",
       category: "Accommodation",
-      thumbnail: "🏠",
     },
     {
       id: 5,
       title: "Student Clubs",
       category: "Activities",
-      thumbnail: "🎭",
     },
     {
       id: 6,
       title: "Tech Labs",
       category: "Technology",
-      thumbnail: "💻",
     },
   ];
 
@@ -57,82 +55,87 @@ export default function CampusLifeSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <MotionReveal as="section" className="py-28 bg-navy">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-navy mb-4">
+        <motion.div variants={revealItem} className="text-center mb-16">
+          <p className="section-label">Campus Experience</p>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-normal">
             Campus Life
           </h2>
-          <p className="text-lg text-muted font-light">
+          <p className="text-lg text-white/70 font-light">
             Experience a vibrant community with excellent infrastructure
           </p>
-        </div>
+        </motion.div>
 
-        {/* Image Grid */}
         <div className="mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {campusImages.map((image) => (
-            <div
-              key={image.id}
-              onClick={() => setSelectedImage(image)}
-              className="group relative overflow-hidden rounded-xl h-64 cursor-pointer"
-            >
-              {/* Image Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy flex items-center justify-center text-7xl hover:scale-110 transition-transform duration-500">
-                {image.thumbnail}
-              </div>
+          {campusImages.map((image, idx) => {
+            const Icon = campusIcons[idx];
 
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-navy/40 group-hover:bg-navy/60 transition-colors duration-300"></div>
-
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-between p-6 z-10">
-                {/* Category Badge */}
-                <div className="inline-flex w-fit">
-                  <span className="text-xs font-semibold text-gold bg-navy/50 px-3 py-1 rounded-full">
-                    {image.category}
-                  </span>
+            return (
+              <motion.button
+                variants={revealItem}
+                key={image.id}
+                onClick={() => setSelectedImage(image)}
+                className="group relative overflow-hidden rounded-xl h-64 cursor-pointer text-left transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl active:scale-95"
+              >
+                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: "url(/images/college.jpg)" }}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/65 to-navy/20" />
                 </div>
 
-                {/* Title & CTA */}
-                <div>
-                  <h3 className="text-2xl font-serif font-bold text-white mb-3 group-hover:text-gold transition-colors">
-                    {image.title}
-                  </h3>
-                  <div className="inline-flex items-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Play className="w-4 h-4 fill-white" />
-                    <span className="text-sm font-medium">View Gallery</span>
+                <div className="absolute inset-0 flex flex-col justify-between p-6 z-10">
+                  <div className="inline-flex w-fit">
+                    <span className="text-xs font-semibold text-gold bg-white/10 border border-white/15 px-3 py-1 rounded-full backdrop-blur">
+                      {image.category}
+                    </span>
+                  </div>
+
+                  <div>
+                    <div className="w-12 h-12 rounded-lg bg-white/10 text-gold flex items-center justify-center mb-4 border border-white/15">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold text-white mb-3 group-hover:text-gold transition-colors tracking-normal">
+                      {image.title}
+                    </h3>
+                    <div className="inline-flex items-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <Play className="w-4 h-4 fill-white" />
+                      <span className="text-sm font-medium">View Gallery</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </motion.button>
+            );
+          })}
         </div>
 
-        {/* Campus Description & Highlights */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Highlights */}
-          <div>
-            <h3 className="text-3xl font-serif font-bold text-navy mb-8">
+          <motion.div variants={revealItem}>
+            <h3 className="text-3xl font-serif font-bold text-white mb-8 tracking-normal">
               World-Class Facilities
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
-              {campusHighlights.map((highlight, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <span className="text-gold text-lg font-bold mt-0.5">✓</span>
-                  <p className="text-muted text-sm leading-relaxed">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {campusHighlights.map((highlight) => (
+                <div key={highlight} className="flex items-start gap-3">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3.5 h-3.5" />
+                  </span>
+                  <p className="text-white/72 text-sm leading-relaxed">
                     {highlight}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Side - CTA Section */}
-          <div className="bg-gold/5 rounded-xl p-8 border border-gold/10">
+          <motion.div
+            variants={revealItem}
+            className="bg-white rounded-xl p-8 shadow-[0_24px_70px_rgba(0,0,0,0.18)]"
+          >
             <div className="mb-8">
-              <h3 className="text-2xl font-serif font-bold text-navy mb-4">
+              <div className="w-12 h-12 rounded-lg bg-gold/15 text-gold flex items-center justify-center mb-5">
+                <FlaskConical className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-navy mb-4 tracking-normal">
                 Experience Our Campus
               </h3>
               <p className="text-muted leading-relaxed mb-6">
@@ -142,18 +145,17 @@ export default function CampusLifeSection() {
               </p>
 
               <div className="space-y-4">
-                <button className="w-full bg-navy hover:bg-navy-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg">
+                <button className="w-full bg-navy hover:bg-navy-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 hover:shadow-lg">
                   Schedule Campus Visit
                 </button>
-                <button className="w-full flex items-center justify-center gap-2 bg-white border-2 border-navy hover:bg-navy/5 text-navy font-semibold py-3 px-6 rounded-lg transition-all duration-300">
+                <button className="w-full flex items-center justify-center gap-2 bg-white border border-navy/20 hover:border-navy hover:bg-cream text-navy font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95">
                   <Play className="w-4 h-4 fill-navy" />
                   Virtual Tour
                 </button>
               </div>
             </div>
 
-            {/* Quick Facts */}
-            <div className="border-t border-gold/20 pt-8">
+            <div className="border-t border-slate-100 pt-8">
               <h4 className="font-semibold text-navy mb-4">Quick Facts</h4>
               <div className="space-y-3">
                 {[
@@ -161,19 +163,19 @@ export default function CampusLifeSection() {
                   { label: "Hostel Capacity", value: "2,000+ Students" },
                   { label: "Library Books", value: "50,000+" },
                   { label: "Labs & Studios", value: "40+" },
-                ].map((fact, idx) => (
-                  <div key={idx} className="flex justify-between items-center">
+                ].map((fact) => (
+                  <div key={fact.label} className="flex justify-between items-center gap-4">
                     <span className="text-muted text-sm">{fact.label}</span>
-                    <span className="font-semibold text-navy">
+                    <span className="font-semibold text-navy whitespace-nowrap">
                       {fact.value}
                     </span>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </MotionReveal>
   );
 }

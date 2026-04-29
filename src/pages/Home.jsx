@@ -8,7 +8,6 @@ import PlacementsSection from "../components/PlacementsSection";
 import CampusLifeSection from "../components/CampusLifeSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import StickyApplyBar from "../components/StickyApplyBar";
-import FloatingButtons from "../components/FloatingButtons";
 
 export default function Home() {
   useEffect(() => {
@@ -44,9 +43,6 @@ export default function Home() {
 
       {/* Sticky Apply Bar - Appears on scroll */}
       <StickyApplyBar />
-
-      {/* Floating Buttons - WhatsApp & AI Chatbot */}
-      <FloatingButtons />
 
       {/* Additional padding to account for sticky apply bar */}
       <div className="h-20"></div>

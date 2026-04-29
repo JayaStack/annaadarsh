@@ -10,14 +10,14 @@
 
   body {
     font-family: "DM Sans", system-ui, sans-serif;
-    background-color: #fbf8f3;
+    background-color: #f8fafc;
     color: #1a1a2e;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background: #c9973a;
+    background: #c9a34e;
     color: white;
   }
 
@@ -25,25 +25,25 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #fbf8f3;
+    background: #f8fafc;
   }
   ::-webkit-scrollbar-thumb {
-    background: #c9973a;
+    background: #c9a34e;
     border-radius: 4px;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gold text-white px-7 py-3.5 rounded-full font-sans font-600 text-sm tracking-wide transition-all duration-300 hover:bg-gold-dark hover:shadow-lg hover:-translate-y-0.5 active:scale-95;
+    @apply bg-gold text-white px-7 py-3.5 rounded-full font-sans font-600 text-sm tracking-wide transition-all duration-300 ease-out hover:bg-gold-dark hover:shadow-lg hover:scale-105 active:scale-95;
   }
 
   .btn-outline {
-    @apply border border-white/60 text-white px-7 py-3.5 rounded-full font-sans text-sm tracking-wide transition-all duration-300 hover:bg-white/10 hover:border-white;
+    @apply border border-white/60 text-white px-7 py-3.5 rounded-full font-sans text-sm tracking-wide transition-all duration-300 ease-out hover:bg-white/10 hover:border-white hover:scale-105 active:scale-95;
   }
 
   .btn-outline-dark {
-    @apply border border-navy/30 text-navy px-7 py-3.5 rounded-full font-sans text-sm tracking-wide transition-all duration-300 hover:border-navy hover:bg-navy hover:text-white;
+    @apply border border-navy/30 text-navy px-7 py-3.5 rounded-full font-sans text-sm tracking-wide transition-all duration-300 ease-out hover:border-navy hover:bg-navy hover:text-white hover:scale-105 active:scale-95;
   }
 
   .section-label {
@@ -51,11 +51,15 @@
   }
 
   .section-heading {
-    @apply font-serif text-4xl md:text-5xl text-navy leading-tight;
+    @apply font-serif text-4xl md:text-5xl text-navy leading-tight tracking-normal;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+    @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl;
+  }
+
+  .section-shell {
+    @apply py-24 px-4 sm:px-6 lg:px-8;
   }
 
   .grain-overlay::after {

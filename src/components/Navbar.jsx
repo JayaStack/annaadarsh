@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { COLLEGE_NAME } from "../constants/college";
 
@@ -23,9 +23,11 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const isSolid = scrolled || !isHome || menuOpen;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -34,21 +36,19 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  const navBg =
-    scrolled || !isHome
-      ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-cream"
-      : "bg-transparent";
-
-  const textColor = scrolled || !isHome ? "text-navy" : "text-white";
-  const logoColor = scrolled || !isHome ? "text-navy" : "text-white";
+  const navBg = isSolid
+    ? "bg-white/95 backdrop-blur-xl shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
+    : "bg-transparent";
+  const textColor = isSolid ? "text-navy" : "text-white";
+  const logoColor = isSolid ? "text-navy" : "text-white";
+  const navHover = isSolid ? "hover:bg-navy/5" : "hover:bg-white/10";
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${navBg}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-16 md:h-20 transition-all">
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
             <img
               src="/images/android-chrome-192x192.png"
@@ -57,12 +57,12 @@ export default function Navbar() {
             />
             <div className="min-w-0">
               <div
-                className={`hidden sm:block font-serif text-lg font-600 leading-tight transition-colors max-w-[220px] truncate ${logoColor}`}
+                className={`hidden sm:block font-serif text-lg font-600 leading-tight tracking-normal transition-colors max-w-[220px] truncate ${logoColor}`}
               >
                 {COLLEGE_NAME}
               </div>
               <div
-                className={`hidden sm:block font-sans text-[10px] tracking-[0.15em] uppercase transition-colors max-w-[220px] truncate ${scrolled || !isHome ? "text-gold" : "text-white/70"}`}
+                className={`hidden sm:block font-sans text-[10px] tracking-[0.15em] uppercase transition-colors max-w-[220px] truncate ${isSolid ? "text-gold" : "text-white/70"}`}
               >
                 Arts and Science
               </div>
@@ -74,13 +74,12 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1 ml-6 xl:ml-8">
             {navLinks.map((link) =>
               link.children ? (
                 <div key={link.label} className="relative group">
                   <button
-                    className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm font-sans font-500 transition-all hover:bg-white/10 ${textColor}`}
+                    className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm font-sans font-500 transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor}`}
                   >
                     {link.label}
                     <svg
@@ -101,7 +100,7 @@ export default function Navbar() {
                   <div className="absolute top-full left-0 w-full h-3" />
 
                   <div className="absolute top-full left-0 pt-2 z-50 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
-                    <div className="w-44 bg-white rounded-2xl shadow-xl border border-navy/5 py-2">
+                    <div className="w-48 bg-white rounded-xl shadow-xl py-2 ring-1 ring-navy/10">
                       {link.children.map((child) => (
                         <Link
                           key={child.label}
@@ -118,7 +117,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`px-4 py-2 rounded-full text-sm font-sans font-500 transition-all hover:bg-white/10 ${textColor} ${location.pathname === link.href ? "opacity-100" : "opacity-80 hover:opacity-100"}`}
+                  className={`px-4 py-2 rounded-full text-sm font-sans font-500 transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor} ${location.pathname === link.href ? "opacity-100" : "opacity-80 hover:opacity-100"}`}
                 >
                   {link.label}
                 </Link>
@@ -126,20 +125,18 @@ export default function Navbar() {
             )}
           </nav>
 
-          {/* CTA */}
           <div className="hidden lg:flex items-center ml-4">
             <Link
               to="/admissions"
-              className="px-5 py-2 rounded-full bg-[#C9973A] text-white font-medium hover:scale-105 transition"
+              className="px-5 py-2.5 rounded-full bg-gold text-navy font-semibold shadow-sm hover:bg-gold-dark hover:text-white transition-all duration-300 ease-out hover:scale-105 active:scale-95"
             >
               Apply Now
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled || !isHome ? "text-navy hover:bg-cream" : "text-white hover:bg-white/10"}`}
+            className={`lg:hidden p-2 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${isSolid ? "text-navy hover:bg-cream" : "text-white hover:bg-white/10"}`}
             aria-label="Toggle menu"
           >
             {menuOpen ? (
@@ -175,11 +172,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`lg:hidden transition-all duration-300 overflow-hidden ${menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}
       >
-        <div className="bg-white border-t border-cream px-4 py-4 space-y-1">
+        <div className="bg-white px-4 py-4 space-y-1 shadow-xl ring-1 ring-navy/10">
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label}>
@@ -209,9 +205,9 @@ export default function Navbar() {
           <div className="pt-3 border-t border-cream">
             <Link
               to="/admissions"
-              className="block text-center bg-gold text-white px-6 py-3 rounded-full text-sm font-sans font-600"
+              className="block text-center bg-gold text-navy px-6 py-3 rounded-full text-sm font-sans font-600 transition-all duration-300 ease-out hover:scale-105 active:scale-95"
             >
-              Apply Now →
+              Apply Now
             </Link>
           </div>
         </div>
