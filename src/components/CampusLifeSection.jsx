@@ -56,7 +56,8 @@ export default function CampusLifeSection() {
     {
       title: "Wi-Fi Campus",
       image: "/images/college.jpg",
-      description: "Always-connected campus support for study and collaboration.",
+      description:
+        "Always-connected campus support for study and collaboration.",
     },
     {
       title: "Laboratories",
