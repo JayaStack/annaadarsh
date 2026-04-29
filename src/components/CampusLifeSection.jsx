@@ -1,4 +1,13 @@
-import { Check, FlaskConical, Library, Monitor, Play, School, Trophy, Users } from "lucide-react";
+import {
+  Check,
+  FlaskConical,
+  Library,
+  Monitor,
+  Play,
+  School,
+  Trophy,
+  Users,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import MotionReveal, { revealItem } from "./MotionReveal";
@@ -78,7 +87,10 @@ export default function CampusLifeSection() {
                 onClick={() => setSelectedImage(image)}
                 className="group relative overflow-hidden rounded-xl h-64 cursor-pointer text-left transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl active:scale-95"
               >
-                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: "url(/images/college.jpg)" }}>
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: "url(/images/college.jpg)" }}
+                >
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/65 to-navy/20" />
                 </div>
 
@@ -108,22 +120,26 @@ export default function CampusLifeSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div variants={revealItem}>
-            <h3 className="text-3xl font-serif font-bold text-white mb-8 tracking-normal">
-              World-Class Facilities
-            </h3>
+          <motion.div variants={revealItem} className="relative">
+            <div className="absolute inset-y-0 -left-6 right-0 bg-gradient-to-r from-[#0B1F3A]/90 via-[#0B1F3A]/60 to-transparent pointer-events-none" />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {campusHighlights.map((highlight) => (
-                <div key={highlight} className="flex items-start gap-3">
-                  <span className="mt-0.5 w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3.5 h-3.5" />
-                  </span>
-                  <p className="text-white/72 text-sm leading-relaxed">
-                    {highlight}
-                  </p>
-                </div>
-              ))}
+            <div className="relative z-10">
+              <h3 className="text-3xl font-serif font-semibold text-white mb-8 tracking-tight [text-shadow:0_2px_10px_rgba(0,0,0,0.4)]">
+                World-Class Facilities
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {campusHighlights.map((highlight) => (
+                  <div key={highlight} className="flex items-start gap-3">
+                    <span className="mt-0.5 w-5 h-5 flex items-center justify-center rounded-full bg-yellow-500/20 text-yellow-400 flex-shrink-0">
+                      <Check className="w-3.5 h-3.5" />
+                    </span>
+                    <p className="text-gray-200 text-sm leading-7 transition duration-300 hover:text-white">
+                      {highlight}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
@@ -164,7 +180,10 @@ export default function CampusLifeSection() {
                   { label: "Library Books", value: "50,000+" },
                   { label: "Labs & Studios", value: "40+" },
                 ].map((fact) => (
-                  <div key={fact.label} className="flex justify-between items-center gap-4">
+                  <div
+                    key={fact.label}
+                    className="flex justify-between items-center gap-4"
+                  >
                     <span className="text-muted text-sm">{fact.label}</span>
                     <span className="font-semibold text-navy whitespace-nowrap">
                       {fact.value}

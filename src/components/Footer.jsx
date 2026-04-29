@@ -2,133 +2,117 @@ import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { COLLEGE_NAME } from "../constants/college";
 
-const footerLinks = {
-  Academics: [
-    { label: "All Courses", href: "/courses" },
-    { label: "Faculty", href: "/faculty" },
-    { label: "Research & Development", href: "/about" },
-    { label: "Add-on Programs", href: "/courses" },
-  ],
-  "Campus Life": [
-    { label: "Infrastructure", href: "/campus" },
-    { label: "Placements", href: "/placements" },
-    { label: "Sports & Clubs", href: "/campus" },
-    { label: "Hostel", href: "/campus" },
-  ],
-  Admissions: [
-    { label: "Apply Now", href: "/admissions" },
-    { label: "Eligibility", href: "/admissions" },
-    { label: "Important Dates", href: "/admissions" },
-    { label: "Fee Structure", href: "/admissions" },
-  ],
-  "Quick Links": [
-    { label: "About Us", href: "/about" },
-    { label: "News & Events", href: "/news" },
-    { label: "Contact Us", href: "/contact" },
-    { label: "Alumni", href: "/about" },
-  ],
-};
-
 export default function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 bg-gold/20 rounded-xl flex items-center justify-center font-serif font-700 text-gold text-lg">
-                D
-              </div>
-              <div>
-                <div className="font-serif text-xl font-600 text-white">
-                  {COLLEGE_NAME}
-                </div>
-                <div className="text-gold text-[10px] tracking-[0.2em] uppercase font-sans">
-                  Arts and Science
-                </div>
-              </div>
-            </div>
-            <p className="text-white/50 text-sm font-sans leading-relaxed max-w-xs">
-              NAAC A++ accredited autonomous college affiliated to University of
-              Madras. Empowering students since 1978.
-            </p>
-            <div className="mt-6 space-y-2 text-sm font-sans text-white/50">
-              <div className="flex items-start gap-2">
-                <MapPin
-                  className="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
-                  strokeWidth={2}
-                />
-                AI, II Street, 9th Main Road, Anna Nagar, Chennai – 600 040
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone
-                  className="w-4 h-4 text-gold flex-shrink-0"
-                  strokeWidth={2}
-                />
-                044 – 2621 2089
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail
-                  className="w-4 h-4 text-gold flex-shrink-0"
-                  strokeWidth={2}
-                />
-                admissions@aias.edu.in
-              </div>
-            </div>
+    <footer className="relative overflow-hidden bg-[#0B1F3A] bg-gradient-to-b from-[#0B1F3A] to-[#071a2f] text-white pt-20 pb-10">
+      <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
+        <img
+          src="/images/map-outline.svg"
+          alt=""
+          className="w-[400px] max-w-none"
+        />
+      </div>
 
-            {/* Social */}
-            <div className="flex items-center gap-3 mt-6">
-              {["f", "in", "yt", "ig"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-gold hover:text-gold transition-all text-xs font-sans"
-                >
-                  {s}
-                </a>
-              ))}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 items-start">
+          <div>
+            <h3 className="text-xs tracking-[0.2em] text-gray-400 uppercase mb-4">
+              Connect
+            </h3>
+            <div className="space-y-3 text-sm text-gray-400 leading-6">
+              <a
+                href="mailto:admissions@aias.edu.in"
+                className="block text-white hover:text-yellow-500 transition-colors"
+              >
+                admissions@aias.edu.in
+              </a>
+              <a
+                href="tel:04426212089"
+                className="block text-white hover:text-yellow-500 transition-colors"
+              >
+                044 – 2621 2089
+              </a>
+              <div className="flex items-start gap-3 text-gray-400">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
+                <span>
+                  AI, II Street, 9th Main Road, Anna Nagar, Chennai – 600 040
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <div className="text-white/30 text-[10px] font-sans tracking-[0.2em] uppercase mb-4">
-                {category}
+          <div>
+            <h3 className="text-xs tracking-[0.2em] text-gray-400 uppercase mb-4">
+              Talk
+            </h3>
+            <div className="space-y-3 text-sm text-gray-400 leading-6 max-w-xs">
+              <p className="text-white">{COLLEGE_NAME}</p>
+              <p className="text-gray-400">
+                NAAC A++ accredited autonomous college affiliated to University
+                of Madras.
+              </p>
+              <div className="pt-2 flex items-center gap-3 text-gray-400">
+                <a href="#" className="hover:text-yellow-500 transition-colors">
+                  Instagram
+                </a>
+                <span className="text-white/20">/</span>
+                <a href="#" className="hover:text-yellow-500 transition-colors">
+                  LinkedIn
+                </a>
+                <span className="text-white/20">/</span>
+                <a href="#" className="hover:text-yellow-500 transition-colors">
+                  YouTube
+                </a>
               </div>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="text-white/60 hover:text-white text-sm font-sans transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
-          ))}
+          </div>
+
+          <div>
+            <h3 className="text-xs tracking-[0.2em] text-gray-400 uppercase mb-4">
+              Find
+            </h3>
+            <div className="space-y-3 text-sm text-gray-400 leading-6">
+              <Link
+                to="/about"
+                className="block text-white hover:text-yellow-500 transition-colors"
+              >
+                About
+              </Link>
+              <Link
+                to="/courses"
+                className="block text-white hover:text-yellow-500 transition-colors"
+              >
+                Courses
+              </Link>
+              <Link
+                to="/placements"
+                className="block text-white hover:text-yellow-500 transition-colors"
+              >
+                Placements
+              </Link>
+              <Link
+                to="/contact"
+                className="block text-white hover:text-yellow-500 transition-colors"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-white/5 mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-sans text-white/30">
-          <div>
-            © {new Date().getFullYear()} {COLLEGE_NAME}. All rights reserved.
-          </div>
+        <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 text-sm text-gray-400">
+          <p>© 2026 Dr. Vikram Agarwal College</p>
+
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white/60 transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white/60 transition-colors">
-              Terms of Use
-            </a>
-            <a href="#" className="hover:text-white/60 transition-colors">
+            <span className="hover:text-white cursor-pointer transition-colors">
+              Privacy
+            </span>
+            <span className="hover:text-white cursor-pointer transition-colors">
+              Terms
+            </span>
+            <span className="hover:text-white cursor-pointer transition-colors">
               Grievance
-            </a>
+            </span>
           </div>
         </div>
       </div>

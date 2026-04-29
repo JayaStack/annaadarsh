@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { COLLEGE_NAME } from "../constants/college";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -36,41 +35,38 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  const navBg = isSolid
-    ? "bg-white/95 backdrop-blur-xl shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
-    : "bg-transparent";
-  const textColor = isSolid ? "text-navy" : "text-white";
-  const logoColor = isSolid ? "text-navy" : "text-white";
+  const navBg = isSolid ? "bg-white shadow-md" : "bg-transparent";
+  const textColor = isSolid ? "text-gray-800" : "text-white";
+  const subTextColor = isSolid ? "text-gray-500" : "text-gray-300";
   const navHover = isSolid ? "hover:bg-navy/5" : "hover:bg-white/10";
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBg}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20 transition-all">
-          <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+          <Link
+            to="/"
+            className="flex items-center gap-3 hover:opacity-90 transition flex-shrink-0"
+          >
             <img
-              src="/images/android-chrome-192x192.png"
+              src="/images/logo.png"
               alt="College Logo"
-              className="w-10 h-10 object-contain"
+              className={`h-10 w-10 object-contain rounded-full p-1 transition-colors duration-300 ${isSolid ? "bg-gray-100" : "bg-white"}`}
             />
-            <div className="min-w-0">
-              <div
-                className={`hidden sm:block font-serif text-lg font-600 leading-tight tracking-normal transition-colors max-w-[220px] truncate ${logoColor}`}
+
+            <div className="hidden sm:block leading-tight">
+              <p
+                className={`text-sm font-semibold tracking-wide transition-colors duration-300 ${textColor}`}
               >
-                {COLLEGE_NAME}
-              </div>
-              <div
-                className={`hidden sm:block font-sans text-[10px] tracking-[0.15em] uppercase transition-colors max-w-[220px] truncate ${isSolid ? "text-gold" : "text-white/70"}`}
+                Dr. Vikram Agarwal College
+              </p>
+              <p
+                className={`text-xs transition-colors duration-300 ${subTextColor}`}
               >
-                Arts and Science
-              </div>
-              <div
-                className={`sm:hidden font-sans text-sm font-700 tracking-[0.12em] uppercase transition-colors ${logoColor}`}
-              >
-                DVACAS
-              </div>
+                Arts &amp; Science
+              </p>
             </div>
           </Link>
 
@@ -79,7 +75,7 @@ export default function Navbar() {
               link.children ? (
                 <div key={link.label} className="relative group">
                   <button
-                    className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm font-sans font-500 transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor}`}
+                    className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm font-sans font-500 transition-colors duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor}`}
                   >
                     {link.label}
                     <svg
@@ -117,7 +113,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`px-4 py-2 rounded-full text-sm font-sans font-500 transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor} ${location.pathname === link.href ? "opacity-100" : "opacity-80 hover:opacity-100"}`}
+                  className={`px-4 py-2 rounded-full text-sm font-sans font-500 transition-colors duration-300 ease-out hover:scale-105 active:scale-95 ${navHover} ${textColor} ${location.pathname === link.href ? "opacity-100" : "opacity-80 hover:opacity-100"}`}
                 >
                   {link.label}
                 </Link>
@@ -136,7 +132,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${isSolid ? "text-navy hover:bg-cream" : "text-white hover:bg-white/10"}`}
+            className={`lg:hidden p-2 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${isSolid ? "text-gray-800 hover:bg-cream" : "text-white hover:bg-white/10"}`}
             aria-label="Toggle menu"
           >
             {menuOpen ? (
