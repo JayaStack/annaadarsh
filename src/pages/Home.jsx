@@ -286,7 +286,7 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center justify-start overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-[120px]">
         {/* Background image + overlay */}
         <div className="absolute inset-0">
           <img
@@ -349,6 +349,82 @@ export default function Home() {
             {stats.map((s) => (
               <StatCard key={s.label} stat={s} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── VIDEO SHOWCASE ── */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <div className="section-label">Campus Experience</div>
+            <h2 className="section-heading">
+              Explore our campus & student life
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-md">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/2Ip7rY9qXyk"
+                title="Video 1"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-md">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/C84-BdPIrFE"
+                title="Video 2"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-md">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/ESjIzDyhxrU"
+                title="Video 3"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── COURSE SEARCH ── */}
+      <section className="py-16 bg-cream">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="font-serif text-2xl md:text-3xl text-navy mb-8">
+            Search for a course
+          </h2>
+
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search Input */}
+            <div className="flex items-center flex-1 bg-white border border-navy/10 rounded-xl px-4 py-3">
+              <svg className="w-5 h-5 text-navy/40 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search for a course or enter keyword..."
+                className="w-full outline-none bg-transparent text-navy placeholder:text-navy/40 text-sm font-sans"
+              />
+            </div>
+
+            {/* Dropdown */}
+            <select className="bg-white border border-navy/10 rounded-xl px-4 py-3 text-sm text-navy font-sans">
+              <option>Study level</option>
+              <option>UG</option>
+              <option>PG</option>
+            </select>
+
+            {/* Button */}
+            <button className="btn-primary">
+              Find your course →
+            </button>
           </div>
         </div>
       </section>
@@ -529,20 +605,36 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="reveal animate-on-scroll grid grid-cols-2 md:grid-cols-4 md:auto-rows-[180px] gap-4">
-            {campusImages.map((img, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Visit Campus", img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600" },
+              { title: "About Campus", img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=600" },
+              { title: "Student Life", img: "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=600" },
+              { title: "Facilities", img: "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=600" }
+            ].map((item, i) => (
               <div
                 key={i}
-                className={`relative overflow-hidden rounded-2xl group ${img.span}`}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer"
               >
+                {/* Image */}
                 <img
-                  src={img.url}
-                  alt={img.label}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-72 object-cover group-hover:scale-105 transition duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 text-white font-sans text-sm font-600">
-                  {img.label}
+
+                {/* Bottom overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+                {/* Content */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <span className="text-white font-sans font-600 text-sm">
+                    {item.title}
+                  </span>
+
+                  <div className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">
+                    →
+                  </div>
                 </div>
               </div>
             ))}

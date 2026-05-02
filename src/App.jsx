@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
+import TopAnnouncementBar from "./components/TopAnnouncementBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingButtons from "./components/FloatingButtons";
@@ -28,6 +29,7 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
+      <TopAnnouncementBar />
       <Navbar />
       <main>
         <Routes>

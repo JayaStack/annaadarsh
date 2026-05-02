@@ -25,7 +25,9 @@ export default function Navbar() {
   const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -34,17 +36,16 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  const navBg =
-    scrolled || !isHome
-      ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-cream"
-      : "bg-transparent";
+  const navBg = scrolled
+    ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-cream"
+    : "bg-transparent";
 
-  const textColor = scrolled || !isHome ? "text-navy" : "text-white";
-  const logoColor = scrolled || !isHome ? "text-navy" : "text-white";
+  const textColor = scrolled ? "text-navy" : "text-white";
+  const logoColor = scrolled ? "text-navy" : "text-white";
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${navBg}`}
+      className={`fixed top-[40px] left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -62,7 +63,7 @@ export default function Navbar() {
                 {COLLEGE_NAME}
               </div>
               <div
-                className={`hidden sm:block font-sans text-[10px] tracking-[0.15em] uppercase transition-colors max-w-[220px] truncate ${scrolled || !isHome ? "text-gold" : "text-white/70"}`}
+                className={`hidden sm:block font-sans text-[10px] tracking-[0.15em] uppercase transition-colors max-w-[220px] truncate ${scrolled ? "text-gold" : "text-white/70"}`}
               >
                 Arts and Science
               </div>
@@ -139,7 +140,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled || !isHome ? "text-navy hover:bg-cream" : "text-white hover:bg-white/10"}`}
+            className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? "text-navy hover:bg-cream" : "text-white hover:bg-white/10"}`}
             aria-label="Toggle menu"
           >
             {menuOpen ? (
