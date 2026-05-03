@@ -9,6 +9,10 @@ import {
 } from "lucide-react";
 import { COLLEGE_NAME } from "../constants/college";
 import { courses } from "../constants/courses";
+import CourseSlider from "../components/CourseSlider";
+import NewsEvents from "../components/NewsEvents";
+import AboutSection from "../components/AboutSection";
+import FacilitiesSlider from "../components/FacilitiesSlider";
 
 /* ── helpers ── */
 function useScrollReveal() {
@@ -430,61 +434,7 @@ export default function Home() {
       </section>
 
       {/* ── COURSES PREVIEW ── */}
-      <section className="py-24 bg-cream">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="reveal animate-on-scroll flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <div className="section-label">Academic Programs</div>
-              <h2 className="section-heading">
-                Courses designed for
-                <br />
-                <em className="font-light">the careers of tomorrow</em>
-              </h2>
-            </div>
-            <Link
-              to="/courses"
-              className="border border-navy/20 text-navy px-6 py-3 rounded-full text-sm font-sans font-500 hover:bg-navy hover:text-white transition-all self-start md:self-auto"
-            >
-              View All Courses →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((c, i) => (
-              <Link
-                key={i}
-                to={`/courses/${c.slug}`}
-                className="reveal animate-on-scroll group bg-white rounded-2xl p-6 border border-navy/5 transform will-change-transform transition-all duration-300 ease-out hover:border-gold/30 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl"
-              >
-                <h3 className="font-serif text-xl text-navy font-600 mb-3">
-                  {c.name}
-                </h3>
-                <p className="text-muted text-sm font-sans leading-relaxed mb-5">
-                  {c.shortDescription}
-                </p>
-                <div className="pt-3 border-t border-cream">
-                  <span className="inline-flex items-center gap-2 text-gold-dark font-sans text-sm font-600">
-                    View Details
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CourseSlider />
 
       {/* ── WHY US ── */}
       <section className="py-24 bg-white">
@@ -563,6 +513,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── ABOUT US ── */}
+      <AboutSection />
+
       {/* ── RECRUITERS MARQUEE ── */}
       <section className="py-16 bg-cream border-y border-navy/5 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
@@ -584,6 +537,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── FACILITIES ── */}
+      <FacilitiesSlider />
 
       {/* ── CAMPUS VISUALS ── */}
       <section className="py-24 bg-white">
@@ -641,6 +597,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── NEWS & EVENTS ── */}
+      <NewsEvents />
 
       {/* ── TESTIMONIALS ── */}
       <section className="py-24 bg-navy overflow-hidden relative">
