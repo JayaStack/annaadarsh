@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Award,
   Briefcase,
@@ -269,6 +269,7 @@ function StatCard({ stat }) {
 /* ── component ── */
 export default function Home() {
   useScrollReveal();
+  const navigate = useNavigate();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
@@ -570,7 +571,8 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                onClick={() => navigate("/campus")}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
               >
                 {/* Image */}
                 <img
