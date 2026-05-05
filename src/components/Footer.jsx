@@ -37,10 +37,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 bg-gold/20 rounded-xl flex items-center justify-center font-serif font-700 text-gold text-lg">
-                D
-              </div>
+            <div className="flex items-start gap-3 mb-5">
+              <img
+                src="/images/favicon.svg"
+                alt="College Logo"
+                className="w-10 h-10 object-contain"
+                onError={(e) => (e.target.src = "/images/favicon-32x32.png")}
+              />
               <div>
                 <div className="font-serif text-xl font-600 text-white">
                   {COLLEGE_NAME}

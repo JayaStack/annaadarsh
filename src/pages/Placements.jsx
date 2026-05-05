@@ -55,24 +55,20 @@ const testimonials = [
 ];
 
 const recruiters = [
-  { name: "TCS", sector: "IT" },
-  { name: "Infosys", sector: "IT" },
-  { name: "Wipro", sector: "IT" },
-  { name: "Cognizant", sector: "IT" },
-  { name: "HCL", sector: "IT" },
-  { name: "IBM", sector: "IT" },
-  { name: "Accenture", sector: "Consulting" },
-  { name: "Deloitte", sector: "Consulting" },
-  { name: "KPMG", sector: "Consulting" },
-  { name: "HDFC Bank", sector: "Banking" },
-  { name: "Axis Bank", sector: "Banking" },
-  { name: "ICICI Bank", sector: "Banking" },
-  { name: "Zoho", sector: "Product" },
-  { name: "Freshworks", sector: "Product" },
-  { name: "TVS", sector: "Manufacturing" },
-  { name: "Murugappa Group", sector: "Conglomerate" },
-  { name: "Capgemini", sector: "IT" },
-  { name: "Mphasis", sector: "IT" },
+  { name: "TCS", logo: "/images/companies/tcs.svg" },
+  { name: "Infosys", logo: "/images/companies/infosys.svg" },
+  { name: "Wipro", logo: "/images/companies/wipro.svg" },
+  { name: "Cognizant", logo: "/images/companies/cognizant.svg" },
+  { name: "HCL", logo: "/images/companies/hcl.svg" },
+  { name: "IBM", logo: "/images/companies/ibm.svg" },
+  { name: "Accenture", logo: "/images/companies/accenture.svg" },
+  { name: "Deloitte", logo: "/images/companies/deloitte.svg" },
+  { name: "KPMG", logo: "/images/companies/kpmg.svg" },
+  { name: "HDFC Bank", logo: "/images/companies/hdfc.svg" },
+  { name: "Axis Bank", logo: "/images/companies/axis.svg" },
+  { name: "ICICI Bank", logo: "/images/companies/icici.svg" },
+  { name: "Zoho", logo: "/images/companies/zoho.svg" },
+  { name: "Freshworks", logo: "/images/companies/freshworks.svg" },
 ];
 
 const programs = [
@@ -272,18 +268,19 @@ export default function Placements() {
               250+ companies trust our graduates
             </h2>
           </div>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {recruiters.map((r, i) => (
               <div
                 key={i}
-                className="group bg-white border border-navy/5 rounded-xl px-5 py-3 hover:border-gold/40 hover:shadow-md transition-all"
+                className="bg-white border border-navy/5 rounded-xl p-4 flex items-center justify-center hover:shadow-md hover:scale-105 hover:bg-cream transition-all"
               >
-                <div className="font-sans font-600 text-navy/70 text-sm group-hover:text-navy">
-                  {r.name}
-                </div>
-                <div className="text-[10px] font-sans text-muted uppercase tracking-wider">
-                  {r.sector}
-                </div>
+                <img
+                  src={r.logo}
+                  alt={r.name}
+                  loading="lazy"
+                  className="h-10 md:h-12 object-contain grayscale hover:grayscale-0 transition"
+                  onError={(e) => (e.target.style.display = "none")}
+                />
               </div>
             ))}
           </div>
